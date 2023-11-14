@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -89,13 +91,18 @@ fun PageDataPelanggan(
             verticalAlignment = Alignment.Bottom
         ){
             OutlinedButton(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(0.5f)
+                    .padding(20.dp),
                 onClick = onCancelButtonClicked,
             ) {
                 Text(stringResource(R.string.cancel))
             }
             Button(
-                modifier = Modifier.weight(1f),
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.onErrorContainer),
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(20.dp),
                 enabled = alamatText.isNotEmpty(),
                 onClick = {onNextButtonClicked(listData)}
             ) {
