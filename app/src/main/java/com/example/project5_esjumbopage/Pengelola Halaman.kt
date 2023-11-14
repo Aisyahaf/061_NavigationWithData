@@ -29,6 +29,7 @@ import com.example.project5_esjumbopage.data.DataSource.flavors
 
 enum class PengelolaHalaman{
     Home,
+    Data,
     Rasa,
     Summary
 }
@@ -81,10 +82,25 @@ fun EsJumboApp(
             composable(route = PengelolaHalaman.Home.name){
                 HomePage (
                     onNextButtonClicked = {
-                        navController.navigate(PengelolaHalaman.Rasa.name)
+                        navController.navigate(PengelolaHalaman.Data.name)
                     }
                 )
             }
+
+            composable(route = PengelolaHalaman.Data.name){
+                PageDataPelanggan(
+                    onCancelButtonClicked = {
+                        cancelOrderAndNavigateToHome(
+                            viewModel,
+                            navController
+                        )
+                    },
+                    onNextButtonClicked = {
+                        viewModel.setDataPel(it)
+                        navController.navigate(PengelolaHalaman.Rasa.name)
+                    })
+            }
+
             composable(route = PengelolaHalaman.Rasa.name){
                 val context = LocalContext.current
                 PageOne(
@@ -93,7 +109,7 @@ fun EsJumboApp(
                     onConfirmButtonClicked = {viewModel.setJumlah(it)},
                     onNextButtonClicked = { navController.navigate(PengelolaHalaman.Summary.name)},
                     onCancelButtonClicked = {
-                        cancelOrderAndNavigateToHome(
+                        cancelOrderAndNavigateToData(
                             viewModel,
                             navController
                         )
@@ -114,8 +130,17 @@ private fun cancelOrderAndNavigateToHome(
     viewModel: OrderViewModel,
     navController: NavHostController
 ){
-    viewModel.resetOrder()
+    viewModel.resetDataPel()
     navController.popBackStack(PengelolaHalaman.Home.name,
+        inclusive = false)
+}
+
+private fun cancelOrderAndNavigateToData(
+    viewModel: OrderViewModel,
+    navController: NavHostController
+){
+    viewModel.resetOrder()
+    navController.popBackStack(PengelolaHalaman.Data.name,
         inclusive = false)
 }
 
