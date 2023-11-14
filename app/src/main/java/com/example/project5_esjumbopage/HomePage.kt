@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
@@ -21,6 +22,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,16 +55,19 @@ fun HomePage(
                 )
                 Text(
                     text = "Es Teh",
-                    color = Color.DarkGray,
+                    color = MaterialTheme.colorScheme.onErrorContainer,
+                    fontFamily = FontFamily.Cursive,
                     fontSize = 35.sp,
+                    fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                 )
                 Text(
                     text = "Cha Tang",
-                    color = Color.DarkGray,
+                    color = MaterialTheme.colorScheme.onErrorContainer,
                     fontStyle = FontStyle.Italic,
-                    fontSize = 60.sp,
+                    fontFamily = FontFamily.Serif,
+                    fontSize = 55.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
@@ -76,6 +81,7 @@ fun HomePage(
             verticalAlignment = Alignment.Bottom
         ){
             Button(
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.onErrorContainer),
                 modifier = Modifier.weight(1f),
                 onClick = onNextButtonClicked
             ) {
