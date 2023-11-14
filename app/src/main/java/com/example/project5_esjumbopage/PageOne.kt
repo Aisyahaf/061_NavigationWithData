@@ -6,11 +6,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -87,13 +89,17 @@ fun PageOne(
                     singleLine = true,
                     shape = MaterialTheme.shapes.large,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-                    modifier = Modifier.width(150.dp),
+                    modifier = Modifier
+                        .width(150.dp),
                     label = { Text(text = "Jumlah Order")},
                     onValueChange = {textJmlhBeli = it}
                 )
                 Button(
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(14.dp),
                     enabled = textJmlhBeli.isNotEmpty(),
+                    colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.onErrorContainer),
                     onClick = { onConfirmButtonClicked(textJmlhBeli.toInt())}
                 ) {
                     Text(stringResource(id = R.string.confirm))
@@ -119,6 +125,7 @@ fun PageOne(
                 }
                 Button(
                     modifier = Modifier.weight(1f),
+                    colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.onErrorContainer),
                     enabled = textJmlhBeli.isNotEmpty(),
                     onClick = onNextButtonClicked
                 ) {
