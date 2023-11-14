@@ -27,6 +27,9 @@ fun PageTwo(
     modifier: Modifier = Modifier
 ){
     val items = listOf(
+        Pair(stringResource(R.string.nama), orderUiState.nama),
+        Pair(stringResource(R.string.telpon), orderUiState.telepon),
+        Pair(stringResource(R.string.alamat), orderUiState.alamat),
         Pair(stringResource(R.string.quantity), orderUiState.jumlah),
         Pair(stringResource(R.string.flavor), orderUiState.rasa)
     )
@@ -47,12 +50,14 @@ fun PageTwo(
                 Divider(
                     thickness = dimensionResource(R.dimen.thickness_divider)
                 )
-                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
-                FormatLabelHarga(
-                    subtotal = orderUiState.harga,
-                    modifier = Modifier.align(Alignment.End)
-                )
             }
+
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+            FormatLabelHarga(
+                subtotal = orderUiState.harga,
+                modifier = Modifier.align(Alignment.End)
+            )
+
             Row (
                 modifier = Modifier
                     .weight(1f, false)
